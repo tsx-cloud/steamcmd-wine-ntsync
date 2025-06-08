@@ -19,3 +19,6 @@ docker run --entrypoint /bin/bash -it tsxcloud/steamcmd-wine-ntsync:latest
 ```
 
 An example of usage can be seen with the game V Rising. https://github.com/tsx-cloud/vrising-ntsync
+
+##
+Enjoying the project? A ⭐ goes a long way!
