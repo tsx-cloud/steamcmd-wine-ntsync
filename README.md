@@ -1,4 +1,4 @@
-# steamcmd-wine-ntsync
+## Base information
 This image is based on Ubuntu 25.04 and Wine 10.9 with all the latest features — staging, TKG, NTSync, and WoW64. Additionally, wine-mono and vcrun 2022 (Visual C++ 2022 Redistributable) are preinstalled.
 This Docker build is designed to be compatible with https://github.com/steamcmd/docker
 
