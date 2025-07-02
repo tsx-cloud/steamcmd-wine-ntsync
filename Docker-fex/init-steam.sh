@@ -2,17 +2,10 @@
 set -euo pipefail
 
 #32-bit libs for Steam
-if [ "$TARGETARCH" = "arm64" ]; then
-    box64=box64
-    dpkg --add-architecture armhf
-    apt update
-    apt install -y libc6:armhf libpthread-stubs0-dev:armhf libncurses6:armhf libstdc++6:armhf libsdl3-0:armhf
-elif [ "$TARGETARCH" = "amd64" ]; then
-    box64=""
-    dpkg --add-architecture i386
-    apt update
-    apt install -y libc6:i386 libpthread-stubs0-dev:i386 lib32gcc-s1 lib32stdc++6 lib32z1 libncurses6:i386 libsdl3-0:i386
-fi
+dpkg --add-architecture armhf
+apt update
+apt install -y libc6:armhf libpthread-stubs0-dev:armhf libncurses6:armhf libstdc++6:armhf
+
 
 mkdir -p ~/steamcmd
 
@@ -22,12 +15,12 @@ chmod +x ~/steamcmd/steamcmd.sh
 
 cat <<EOF >/usr/local/bin/steamcmd
 #!/bin/bash
-exec $box64 "$HOME/steamcmd/steamcmd.sh" "\$@"
+exec $runx64 "$HOME/steamcmd/steamcmd.sh" "\$@"
 EOF
 
 cat <<EOF >/usr/local/bin/steamcmd.sh
 #!/bin/bash
-exec $box64 "$HOME/steamcmd/steamcmd.sh" "\$@"
+exec $runx64 "$HOME/steamcmd/steamcmd.sh" "\$@"
 EOF
 
 chmod +x /usr/local/bin/steamcmd

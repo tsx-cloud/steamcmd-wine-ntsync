@@ -3,13 +3,14 @@ FROM ubuntu:25.04
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG TARGETARCH
 ENV TARGETARCH=${TARGETARCH}
+ENV runx64="FEXInterpreter"
 
 # Install essential tools
 RUN apt-get update
-RUN apt-get install --yes wget build-essential git curl unzip rsync tar libc6 libstdc++6 file ca-certificates gnupg
+RUN apt-get install --yes wget build-essential git curl unzip rsync tar unar libc6 libstdc++6 file ca-certificates gnupg squashfs-tools software-properties-common
 
 # Install optional tools for convenience
-RUN apt-get install --yes mc nano unzip file gnupg lsof kmod
+RUN apt-get install --yes mc nano unzip file gnupg lsof kmod ack patchelf sudo 
 
 # Add Unicode support
 RUN apt-get install -y locales \
@@ -18,15 +19,6 @@ RUN apt-get install -y locales \
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
-
-# To suppress Box86's info banner to avoid winetricks to crash
-ENV BOX86_NOBANNER=1
-ENV BOX64_NOBANNER=1
-
-# Install box86 and box64
-COPY install-box.sh /
-RUN bash /install-box.sh \
- && rm /install-box.sh
 
 # `cabextract` is required by winetricks to install most libraries
 # `xvfb` is needed to run Wine with a virtual display, since some Windows programs require a display (used with `xvfb-run`)
@@ -41,6 +33,29 @@ COPY install-wine.sh /
 RUN bash /install-wine.sh \
  && rm /install-wine.sh
 
+# Install box64
+COPY install-box.sh /
+RUN bash /install-box.sh \
+ && rm /install-box.sh
+
+# Install fex-emu
+RUN add-apt-repository -y ppa:fex-emu/fex
+RUN apt-get install -y fex-emu-armv8.2
+#Init fex-emu
+RUN FEXInterpreter /usr/bin/uname -a || true
+
+#RootFS with Wine dependencies for FEX-Emu
+RUN mkdir -p /root/.fex-emu/RootFS/
+RUN wget -O /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh https://github.com/tsx-cloud/steamcmd-wine-ntsync/releases/download/v1.1-rootfs/Ubuntu_25_04.sqsh
+RUN unsquashfs -d /root/.fex-emu/RootFS/Ubuntu_25_04 /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh
+RUN rm /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh
+RUN echo '{"Config":{"RootFS":"Ubuntu_25_04"}}' > /root/.fex-emu/Config.json
+
+RUN mkdir -p /root/wine/
+RUN mkdir -p /lib/wine/
+RUN cp -a /root/.fex-emu/RootFS/Ubuntu_25_04/opt/wine-staging/. /root/wine/
+RUN rm -rf /root/.fex-emu/RootFS/Ubuntu_25_04/opt/wine-staging/
+
 COPY wrap-wine.sh /
 RUN bash /wrap-wine.sh \
  && rm /wrap-wine.sh
@@ -54,6 +69,9 @@ ENV XDG_DATA_DIRS=/root/wine/share:/usr/local/share:/usr/share
 ENV XDG_RUNTIME_DIR="/run/user/$(id -u)"
 RUN mkdir -p "$XDG_RUNTIME_DIR"
 RUN chmod 700 "$XDG_RUNTIME_DIR"
+
+# To suppress Box64's info banner to avoid winetricks to crash
+ENV BOX64_NOBANNER=1
 
 # winegstreamer sometimes causes a bug that prevents Wineprefix creation; this command removes it
 #RUN apt-get remove --purge libges-1.0-0
