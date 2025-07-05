@@ -8,8 +8,8 @@ HANGOVER_VER="10.11"
 echo -e "Downloading Wine..."
 mkdir -p wine-installer
 cd wine-installer
-wget https://github.com/AndreRH/hangover/releases/download/hangover-${HANGOVER_VER}/hangover_${HANGOVER_VER}_ubuntu2404_noble_arm64.tar
-tar -xf hangover_${HANGOVER_VER}_ubuntu2404_noble_arm64.tar
+wget https://github.com/AndreRH/hangover/releases/download/hangover-${HANGOVER_VER}/hangover_${HANGOVER_VER}_ubuntu2504_plucky_arm64.tar
+tar -xf hangover_${HANGOVER_VER}_ubuntu2504_plucky_arm64.tar
 
 echo -e "Installing Wine..."
 apt install -y ./hangover-*.deb
