@@ -24,15 +24,6 @@ ENV LC_ALL=en_US.UTF-8
 # `xvfb` is needed to run Wine with a virtual display, since some Windows programs require a display (used with `xvfb-run`)
 RUN apt install --yes cabextract xvfb
 
-###Wine block
-ENV WINEPREFIX=/root/.wine
-ENV WINEARCH=win64
-
-# Install Wine and Winetricks
-COPY install-wine.sh /
-RUN bash /install-wine.sh \
- && rm /install-wine.sh
-
 # Install box64
 COPY install-box.sh /
 RUN bash /install-box.sh \
@@ -44,17 +35,14 @@ RUN apt-get install -y fex-emu-armv8.2
 #Init fex-emu
 RUN FEXInterpreter /usr/bin/uname -a || true
 
-#RootFS with Wine dependencies for FEX-Emu
-RUN mkdir -p /root/.fex-emu/RootFS/
-RUN wget -O /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh https://github.com/tsx-cloud/steamcmd-wine-ntsync/releases/download/v1.1-rootfs/Ubuntu_25_04.sqsh
-RUN unsquashfs -d /root/.fex-emu/RootFS/Ubuntu_25_04 /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh
-RUN rm /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh
-RUN echo '{"Config":{"RootFS":"Ubuntu_25_04"}}' > /root/.fex-emu/Config.json
+###Wine block
+ENV WINEPREFIX=/root/.wine
+ENV WINEARCH=win64
 
-RUN mkdir -p /root/wine/
-RUN mkdir -p /lib/wine/
-RUN cp -a /root/.fex-emu/RootFS/Ubuntu_25_04/opt/wine-staging/. /root/wine/
-RUN rm -rf /root/.fex-emu/RootFS/Ubuntu_25_04/opt/wine-staging/
+# Install Wine Winetricks and #RootFS for FEX-Emu
+COPY install-wine.sh /
+RUN bash /install-wine.sh \
+ && rm /install-wine.sh
 
 COPY wrap-wine.sh /
 RUN bash /wrap-wine.sh \
@@ -89,6 +77,8 @@ RUN apt-get -y autoremove \
  && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists
 
 WORKDIR /root
+
+COPY benchmarks/ ./benchmarks/
 
 # Set default command
 ENTRYPOINT ["steamcmd"]

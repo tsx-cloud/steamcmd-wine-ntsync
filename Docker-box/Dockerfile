@@ -74,6 +74,8 @@ RUN apt-get -y autoremove \
 
 WORKDIR /root
 
+COPY benchmarks/ ./benchmarks/
+
 # Set default command
 ENTRYPOINT ["steamcmd"]
 CMD ["+help", "+quit"]
