@@ -37,12 +37,9 @@ docker run --entrypoint bash -it tsxcloud/steamcmd-wine-ntsync:latest
 
 An example of usage can be seen with the game LOTR Moria. https://github.com/tsx-cloud/moria-docker-arm
 
-## ARM64
-Ось оформлений текст англійською в markdown-стилі:
-
 ---
 
-# 🕹️ Running a Game Server or App on ARM with Docker
+## Running a Game Server or App on ARM with Docker
 
 If you want to run a **playful server or Windows program on ARM**, follow this step-by-step approach:
 
