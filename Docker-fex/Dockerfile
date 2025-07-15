@@ -50,6 +50,7 @@ RUN bash /wrap-wine.sh \
 
 # Suppress Wine debug messages
 ENV WINEDEBUG=-all
+ENV BOX64_LOG=0
 
 # Configure xvfb
 ENV DISPLAY=:0
@@ -57,9 +58,6 @@ ENV XDG_DATA_DIRS=/root/wine/share:/usr/local/share:/usr/share
 ENV XDG_RUNTIME_DIR="/run/user/$(id -u)"
 RUN mkdir -p "$XDG_RUNTIME_DIR"
 RUN chmod 700 "$XDG_RUNTIME_DIR"
-
-# To suppress Box64's info banner to avoid winetricks to crash
-ENV BOX64_NOBANNER=1
 
 # winegstreamer sometimes causes a bug that prevents Wineprefix creation; this command removes it
 #RUN apt-get remove --purge libges-1.0-0

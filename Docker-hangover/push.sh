@@ -1,2 +1,9 @@
 #!/bin/bash
-docker push tsxcloud/steamcmd-wine-ntsync:10.11-arm64-hangover
+WINE_VER="10.11"
+
+docker push tsxcloud/steamcmd-wine-ntsync:${WINE_VER}-arm64-hangover
+
+docker manifest create --amend "tsxcloud/steamcmd-wine-ntsync:arm64-hangover" \
+  tsxcloud/steamcmd-wine-ntsync:${WINE_VER}-arm64-hangover
+
+docker manifest push --purge "tsxcloud/steamcmd-wine-ntsync:arm64-hangover"
