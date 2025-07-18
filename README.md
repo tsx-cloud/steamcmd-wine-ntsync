@@ -17,19 +17,19 @@ Test interactively
 ```yaml
 docker run --entrypoint bash -it tsxcloud/steamcmd-wine-ntsync:latest
 ```
-* To run **SteamCMD**:
+* To run SteamCMD:
 
   ```bash
   steamcmd
   ```
 
-* To run **x86\_64 Linux programs**:
+* To run x86\_64 Linux programs:
 
   ```bash
   $runx64 ./your_x64_program
   ```
 
-* To run **x86\_64 Windows programs**:
+* To run x86\_64 Windows programs:
 
   ```bash
   wine your_x64_program.exe
@@ -69,7 +69,7 @@ Switch back to:
 tsxcloud/steamcmd-wine-ntsync:latest
 ```
 
-And experiment with **Box64 environment variables**. See [Box64 Usage Docs](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) for full options.
+And experiment with Box64 environment variables. See [Box64 Usage Docs](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) for full options.
 
 #### Example in a bash script:
 
