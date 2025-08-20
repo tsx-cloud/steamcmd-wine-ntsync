@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 MONO_VER="10.1.0"
-WINE_VER="10.12"
+WINE_VER="10.13"
 WINE_TYPE="staging-tkg-ntsync-amd64-wow64"
 ########################################################
 

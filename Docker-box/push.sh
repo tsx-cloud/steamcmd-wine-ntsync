@@ -4,10 +4,10 @@ ARCH=$(uname -m)
 
 if [[ "$ARCH" == "aarch64" ]]; then
     echo "Push arm64-box..."
-    docker push tsxcloud/steamcmd-wine-ntsync:10.12-arm64-box
+    docker push tsxcloud/steamcmd-wine-ntsync:10.13-arm64-box
 elif [[ "$ARCH" == "x86_64" ]]; then
     echo "Building for amd64..."
-    docker push tsxcloud/steamcmd-wine-ntsync:10.12-amd64
+    docker push tsxcloud/steamcmd-wine-ntsync:10.13-amd64
 else
     echo "Unsupported architecture: $ARCH"
     exit 1
