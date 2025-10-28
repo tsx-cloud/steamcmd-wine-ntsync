@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-MONO_VER="10.2.0"
+MONO_VER="10.3.0"
 ########################################################
 
 echo -e "Installing Wine-Mono..."

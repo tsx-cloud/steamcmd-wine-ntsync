@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
-MONO_VER="10.2.0"
-WINE_VER="10.15"
+MONO_VER="10.3.0"
+WINE_VER="10.17"
 WINE_TYPE="staging-tkg-ntsync-amd64-wow64"
 ########################################################
 
