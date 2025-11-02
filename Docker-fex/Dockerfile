@@ -1,9 +1,9 @@
-FROM ubuntu:25.04
+FROM ubuntu:25.10
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG TARGETARCH
 ENV TARGETARCH=${TARGETARCH}
-ENV runx64="FEXInterpreter"
+ENV runx64="FEX"
 
 # Install essential tools
 RUN apt-get update
@@ -33,7 +33,7 @@ RUN bash /install-box.sh \
 RUN add-apt-repository -y ppa:fex-emu/fex
 RUN apt-get install -y fex-emu-armv8.2
 #Init fex-emu
-RUN FEXInterpreter /usr/bin/uname -a || true
+RUN FEX /usr/bin/uname -a || true
 
 ###Wine block
 ENV WINEPREFIX=/root/.wine

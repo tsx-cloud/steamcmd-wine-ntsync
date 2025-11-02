@@ -1,4 +1,4 @@
-FROM ubuntu:25.04
+FROM ubuntu:25.10
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG TARGETARCH
@@ -11,7 +11,7 @@ RUN apt-get update
 RUN apt-get install --yes wget build-essential git curl unzip rsync tar unar libc6 libstdc++6 file ca-certificates gnupg squashfs-tools software-properties-common
 
 # Install optional tools for convenience
-RUN apt-get install --yes mc nano unzip file gnupg lsof kmod ack
+RUN apt-get install --yes mc nano unzip file gnupg lsof kmod ack sudo
 
 # Add Unicode support
 RUN apt-get install -y locales \

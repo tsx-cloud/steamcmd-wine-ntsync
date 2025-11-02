@@ -15,12 +15,12 @@ chmod +x winetricks
 mv winetricks /usr/local/bin/
 
 mkdir -p /root/.fex-emu/RootFS/
-wget -O /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh https://github.com/tsx-cloud/steamcmd-wine-ntsync/releases/latest/download/Ubuntu_25_04.sqsh
-unsquashfs -d /root/.fex-emu/RootFS/Ubuntu_25_04 /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh
-rm /root/.fex-emu/RootFS/Ubuntu_25_04.sqsh
-echo '{"Config":{"RootFS":"Ubuntu_25_04"}}' > /root/.fex-emu/Config.json
+wget -O /root/.fex-emu/RootFS/Ubuntu_25_10.sqsh https://github.com/tsx-cloud/steamcmd-wine-ntsync/releases/latest/download/Ubuntu_25_10.sqsh
+unsquashfs -d /root/.fex-emu/RootFS/Ubuntu_25_04 /root/.fex-emu/RootFS/Ubuntu_25_10.sqsh
+rm /root/.fex-emu/RootFS/Ubuntu_25_10.sqsh
+echo '{"Config":{"RootFS":"Ubuntu_25_10"}}' > /root/.fex-emu/Config.json
 
 mkdir -p /root/wine/
 mkdir -p /lib/wine/
-cp -a /root/.fex-emu/RootFS/Ubuntu_25_04/opt/wine-staging/. /root/wine/
-rm -rf /root/.fex-emu/RootFS/Ubuntu_25_04/opt/wine-staging/
+cp -a /root/.fex-emu/RootFS/Ubuntu_25_10/opt/wine-staging/. /root/wine/
+rm -rf /root/.fex-emu/RootFS/Ubuntu_25_10/opt/wine-staging/
