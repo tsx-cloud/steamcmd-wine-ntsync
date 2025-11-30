@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 MONO_VER="10.3.0"
-WINE_VER="10.18"
+WINE_VER="10.20"
 WINE_TYPE="staging-tkg-amd64-wow64"
 ########################################################
 
@@ -29,7 +29,7 @@ echo -e "Installing Wine dependencies for box64 ..."
 apt-get install -y acl libavformat61 libgdk-pixbuf-2.0-0 libnorm1t64 libsane-common libvdpau1 libxinerama1 adwaita-icon-theme libavutil59 libgdk-pixbuf2.0-bin
 apt-get install -y libnspr4 libsane1 libvisual-0.4-0 libxkbregistry0 alsa-topology-conf libbdplus0 libgdk-pixbuf2.0-common libnss-mdns libsdl2-2.0-0
 apt-get install -y libvorbis0a libvorbisenc2 libxrandr2 alsa-ucm-conf libbluray2 libglu1-mesa libnss3 libshine3 libvorbisfile3 libxshmfence1
-apt-get install -y at-spi2-common libcairo-gobject2 libglvnd0 libodbc2 libsnappy1v5 libvpl2 libxtst6 at-spi2-core libcdparanoia0 libgme0
+apt-get install -y at-spi2-common libcairo-gobject2 libglvnd0 libodbc2 libsnappy1v5 libxtst6 at-spi2-core libcdparanoia0 libgme0
 apt-get install -y libodbccr2 libsndfile1 libvpx9 libxvidcore4 dconf-gsettings-backend libchromaprint1 libgpgme11t64 libogg0 libsnmp-base libwayland-client0
 apt-get install -y libxxf86vm1 dconf-service libcodec2-1.2 libgphoto2-6t64 libopenjp2-7 libsoxr0 libwayland-cursor0 libzvbi-common gsettings-desktop-schemas libcolord2
 apt-get install -y libgphoto2-l10n libopenmpt0t64 libspeex1 libwayland-egl1 libzvbi0t64 gstreamer1.0-plugins-base libcups2t64 libgphoto2-port12t64 libopus0 libspeexdsp1
