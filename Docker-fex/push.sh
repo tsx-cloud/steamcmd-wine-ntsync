@@ -1,5 +1,5 @@
 #!/bin/bash
-WINE_VER="10.17"
+WINE_VER="10.20"
 
 docker push tsxcloud/steamcmd-wine-ntsync:${WINE_VER}-arm64-fex
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
-MONO_VER="10.2.0"
-HANGOVER_VER="10.14"
+MONO_VER="10.3.0"
+HANGOVER_VER="10.18"
 ########################################################
 
 echo -e "Downloading Wine..."

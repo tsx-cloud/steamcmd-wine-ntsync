@@ -3,7 +3,7 @@ FROM ubuntu:25.04
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG TARGETARCH
 ENV TARGETARCH=${TARGETARCH}
-ENV runx64="FEXInterpreter"
+ENV runx64="FEX"
 
 # Install essential tools
 RUN apt-get update

@@ -3,14 +3,14 @@ set -euxo pipefail
 
 cat << EOF > /usr/local/bin/winefex-emu
 #!/bin/sh
-WINEPREFIX=~/.wine WINEARCH=win64 FEXInterpreter ~/wine/bin/wine "\$@"
+WINEPREFIX=~/.wine WINEARCH=win64 FEX ~/wine/bin/wine "\$@"
 EOF
 
 ln -s /usr/local/bin/winefex-emu /usr/local/bin/wine
 
 cat << EOF > /usr/local/bin/wineserver
 #!/bin/sh
-WINEPREFIX=~/.wine WINEARCH=win64 FEXInterpreter ~/wine/bin/wineserver \$@
+WINEPREFIX=~/.wine WINEARCH=win64 FEX ~/wine/bin/wineserver \$@
 EOF
 
 ln -sf ~/wine/bin/wineboot /usr/local/bin/wineboot

@@ -1,5 +1,5 @@
 #!/bin/bash
-WINE_VER="10.14"
+WINE_VER="10.18"
 
 docker push tsxcloud/steamcmd-wine-ntsync:${WINE_VER}-arm64-hangover
 
